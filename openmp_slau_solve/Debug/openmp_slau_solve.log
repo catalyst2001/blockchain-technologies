@@ -1,0 +1,4 @@
+﻿  main.cpp
+e:\github\blockchain-technologies\openmp_slau_solve\main.cpp(10): warning C4018: <: несоответствие типов со знаком и без знака
+e:\github\blockchain-technologies\openmp_slau_solve\main.cpp(11): warning C4018: <: несоответствие типов со знаком и без знака
+  openmp_slau_solve.vcxproj -> E:\GITHUB\blockchain-technologies\Debug\openmp_slau_solve.exe
