@@ -14,28 +14,32 @@ DWORD WINAPI thread_proc(LPVOID p_param)
   InterlockedIncrement(&global_var);
 #else
   global_var++; // no-atomic increment for demonstrate race condition
-
 #endif
   //printf("value incremented=%d  from thread %zd\n", global_var, (size_t)p_param);
-  //printf_s("!!!!\n");
   return 0;
 }
 
 #define CNT(x) (sizeof(x) / sizeof(x[0]))
 
+const size_t num_threads = NUM_THREADS;
+
 int main()
 {
-  size_t i, num_tests;
-  const size_t num_threads = NUM_THREADS;
-  HANDLE h_threads[num_threads];
+  SYSTEM_INFO sysinfo;
+  size_t      i, num_tests;
+  HANDLE      h_threads[num_threads];
+
+  GetSystemInfo(&sysinfo);
 
   while (1) {
     printf("type num tests: ");
     scanf_s("%zd", &num_tests);
     for (i = 0; i < num_tests; i++) {
       InterlockedExchange(&global_var, 0); //reset var value
-      for (size_t j = 0; j < num_threads; j++)
+      for (size_t j = 0; j < num_threads; j++) {
         h_threads[j] = CreateThread(NULL, 0, &thread_proc, (LPVOID)j, 0, NULL);
+        SetThreadAffinityMask(h_threads[j], (DWORD_PTR)((1 << (j % sysinfo.dwNumberOfProcessors))));
+      }
 
       printf("%zd threads created (pass %zd)\n", num_threads, i);
       if (WaitForMultipleObjects((DWORD)num_threads, h_threads, TRUE, INFINITE) == WAIT_FAILED) {
