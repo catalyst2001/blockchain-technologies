@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "deadlock", "deadlock\deadlo
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "openmp_slau_solve", "openmp_slau_solve\openmp_slau_solve.vcxproj", "{1E55E06C-B6A4-4C18-AE95-D2DA5FCC23A3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "blockchain", "blockchain\blockchain.vcxproj", "{CCB65336-A116-4964-9CA5-FD1EE996E290}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{1E55E06C-B6A4-4C18-AE95-D2DA5FCC23A3}.Release|x64.Build.0 = Release|x64
 		{1E55E06C-B6A4-4C18-AE95-D2DA5FCC23A3}.Release|x86.ActiveCfg = Release|Win32
 		{1E55E06C-B6A4-4C18-AE95-D2DA5FCC23A3}.Release|x86.Build.0 = Release|Win32
+		{CCB65336-A116-4964-9CA5-FD1EE996E290}.Debug|x64.ActiveCfg = Debug|x64
+		{CCB65336-A116-4964-9CA5-FD1EE996E290}.Debug|x64.Build.0 = Debug|x64
+		{CCB65336-A116-4964-9CA5-FD1EE996E290}.Debug|x86.ActiveCfg = Debug|Win32
+		{CCB65336-A116-4964-9CA5-FD1EE996E290}.Debug|x86.Build.0 = Debug|Win32
+		{CCB65336-A116-4964-9CA5-FD1EE996E290}.Release|x64.ActiveCfg = Release|x64
+		{CCB65336-A116-4964-9CA5-FD1EE996E290}.Release|x64.Build.0 = Release|x64
+		{CCB65336-A116-4964-9CA5-FD1EE996E290}.Release|x86.ActiveCfg = Release|Win32
+		{CCB65336-A116-4964-9CA5-FD1EE996E290}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

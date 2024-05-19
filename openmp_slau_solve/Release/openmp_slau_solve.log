@@ -1,9 +1,10 @@
-﻿  main.cpp
-e:\github\blockchain-technologies\openmp_slau_solve\main.cpp(7): warning C4018: <: несоответствие типов со знаком и без знака
-e:\github\blockchain-technologies\openmp_slau_solve\main.cpp(8): warning C4018: <: несоответствие типов со знаком и без знака
+﻿cl : командная строка  warning D9025: переопределение "/sdl" на "/GS-"
+  main.cpp
+E:\GITHUB\blockchain-technologies\openmp_slau_solve\main.cpp(8,21): warning C4018: <: несоответствие типов со знаком и без знака
+E:\GITHUB\blockchain-technologies\openmp_slau_solve\main.cpp(9,23): warning C4018: <: несоответствие типов со знаком и без знака
   Создание кода
-  1 of 164 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+E:\GITHUB\blockchain-technologies\openmp_slau_solve\main.cpp(94): warning C4700: использована неинициализированная локальная переменная "val"
+  All 17 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Создание кода завершено
   openmp_slau_solve.vcxproj -> E:\GITHUB\blockchain-technologies\Release\openmp_slau_solve.exe

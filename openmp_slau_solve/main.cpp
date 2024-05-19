@@ -1,19 +1,19 @@
-﻿#include <iostream>
+﻿#include <stdio.h>
 #include <vector>
 #include <omp.h>
 
-// Функция для вывода матрицы
-void printMatrix(std::vector<std::vector<double>>& matrix) {
+void print_mat(std::vector<std::vector<double>>& matrix)
+{
   for (int i = 0; i < matrix.size(); ++i) {
     for (int j = 0; j < matrix[i].size(); ++j) {
-      std::cout << matrix[i][j] << " ";
+      printf("%.02lf ", matrix[i][j]);
     }
-    std::cout << std::endl;
+    printf("\n");
   }
 }
 
-// Функция для выполнения прямого хода метода Гаусса
-void forwardElimination(std::vector<std::vector<double>>& matrix, int n) {
+void forward_elimination(std::vector<std::vector<double>>& matrix, int n)
+{
   for (int k = 0; k < n - 1; ++k) {
 #pragma omp parallel for
     for (int i = k + 1; i < n; ++i) {
@@ -25,8 +25,8 @@ void forwardElimination(std::vector<std::vector<double>>& matrix, int n) {
   }
 }
 
-// Функция для выполнения обратного хода метода Гаусса
-std::vector<double> backSubstitution(std::vector<std::vector<double>>& matrix, int n) {
+std::vector<double> back_substitution(std::vector<std::vector<double>>& matrix, int n)
+{
   std::vector<double> solution(n);
   solution[n - 1] = matrix[n - 1][n] / matrix[n - 1][n - 1];
   for (int i = n - 2; i >= 0; --i) {
@@ -40,35 +40,41 @@ std::vector<double> backSubstitution(std::vector<std::vector<double>>& matrix, i
   return solution;
 }
 
-int main() {
-  // Пример системы линейных уравнений:
-  // 2x + 3y - z = 1
-  // 4x + y + 2z = 3
-  // x + 2y - 3z = 4
-
+// 2x + 3y - z = 1
+// 4x + y + 2z = 3
+// x + 2y - 3z = 4
+int main()
+{
   std::vector<std::vector<double>> matrix = {
       {2, 3, -1, 1},
-      {4, 1, 2, 3},
       {4, 1, 2, 3},
       {1, 2, -3, 4}
   };
 
   int n = matrix.size();
 
-  std::cout << "Original matrix:" << std::endl;
-  printMatrix(matrix);
+  printf("original matrix:\n");
+  print_mat(matrix);
 
-  forwardElimination(matrix, n);
+  forward_elimination(matrix, n);
+  std::vector<double> solution = back_substitution(matrix, n);
 
-  std::cout << "\nMatrix after forward elimination:" << std::endl;
-  printMatrix(matrix);
-
-  std::vector<double> solution = backSubstitution(matrix, n);
-
-  std::cout << "\nSolution:" << std::endl;
-  for (int i = 0; i < n; ++i) {
-    std::cout << "x" << i + 1 << " = " << solution[i] << std::endl;
-  }
+  printf("\nSolution:\n");
+  for (int i = 0; i < n; i++)
+    printf("x%d = %.2lf\n", i + 1, solution[i]);
 
   return 0;
 }
+
+#if 1
+#else
+int main()
+{
+  omp_set_num_threads(8);
+#pragma omp parallel
+  {
+    printf("Hello world from thread %d out of %d\n", omp_get_thread_num(), omp_get_num_threads());
+  }
+  return 0;
+}
+#endif
